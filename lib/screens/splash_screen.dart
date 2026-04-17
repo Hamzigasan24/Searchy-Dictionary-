@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
       duration: const Duration(milliseconds: 900),
     );
-    _fade  = CurvedAnimation(parent: _ctrl, curve: Curves.easeIn);
+    _fade = CurvedAnimation(parent: _ctrl, curve: Curves.easeIn);
     _scale = Tween<double>(begin: 0.8, end: 1.0)
         .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOutBack));
     _ctrl.forward();
@@ -38,9 +38,8 @@ class _SplashScreenState extends State<SplashScreen>
   void _navigate() {
     if (!mounted) return;
     final auth = context.read<AuthProvider>();
-    final dest = auth.isAuthenticated
-        ? const HomeScreen()
-        : const WelcomeScreen();
+    final dest =
+        auth.isAuthenticated ? const HomeScreen() : const WelcomeScreen();
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
         pageBuilder: (_, __, ___) => dest,
@@ -73,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen>
                   width: 90,
                   height: 90,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
+                    color: Colors.white.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: const Icon(
@@ -83,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text('Searchy Dict', style: T.display(color: Colors.white)),
+                Text('SearcHub', style: T.display(color: Colors.white)),
                 const SizedBox(height: 6),
                 Text(
                   'Every word, defined.',

@@ -1,5 +1,5 @@
-name: searchy_dict
-description: A dictionary app with user accounts and search history powered by Merriam-Webster.
+name: searchub
+description: SearcHub - A dictionary app with user accounts and search history.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -31,14 +31,22 @@ dependencies:
   # Utilities
   shared_preferences: ^2.3.3
   intl: ^0.19.0
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: "^0.14.1"
 
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
     - assets/animations/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.png"
+  min_sdk_android: 21

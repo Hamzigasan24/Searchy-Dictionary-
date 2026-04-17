@@ -55,7 +55,7 @@ class ResultScreen extends StatelessWidget {
                         width: 180, height: 180,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white.withOpacity(0.04),
+                          color: Colors.white.withValues(alpha: 0.04),
                         ),
                       ),
                     ),
@@ -80,7 +80,7 @@ class ResultScreen extends StatelessWidget {
                                   Text(
                                     '/ $pron /',
                                     style: T.subtitle(
-                                      color: Colors.white.withOpacity(0.65),
+                                      color: Colors.white.withValues(alpha: 0.65),
                                     ).copyWith(fontStyle: FontStyle.italic),
                                   ),
                                 const SizedBox(width: 8),

@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../main.dart' show firebaseReady;
@@ -62,10 +63,21 @@ class AuthProvider extends ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    if (!firebaseReady) { _setError(_noFirebaseMsg); return false; }
+    if (!firebaseReady) {
+      _setError(_noFirebaseMsg);
+      return false;
+    }
+
+    // Client-side validation
+    if (!EmailValidator.validate(email.trim())) {
+      _setError('Please enter a valid email address.');
+      return false;
+    }
+
     _setLoading();
     try {
-      await _service.register(email: email, password: password, displayName: name);
+      await _service.register(
+          email: email.trim(), password: password, displayName: name);
       return true;
     } on FirebaseAuthException catch (e) {
       _setError(AuthService.handleAuthError(e));
@@ -81,10 +93,20 @@ class AuthProvider extends ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    if (!firebaseReady) { _setError(_noFirebaseMsg); return false; }
+    if (!firebaseReady) {
+      _setError(_noFirebaseMsg);
+      return false;
+    }
+
+    // Client-side validation
+    if (!EmailValidator.validate(email.trim())) {
+      _setError('Please enter a valid email address.');
+      return false;
+    }
+
     _setLoading();
     try {
-      await _service.login(email: email, password: password);
+      await _service.login(email: email.trim(), password: password);
       return true;
     } on FirebaseAuthException catch (e) {
       _setError(AuthService.handleAuthError(e));
@@ -98,7 +120,9 @@ class AuthProvider extends ChangeNotifier {
   // ── Sign Out ────────────────────────────────────────────────────────────────
   Future<void> signOut() async {
     if (!firebaseReady) return;
-    try { await _service.signOut(); } catch (_) {}
+    try {
+      await _service.signOut();
+    } catch (_) {}
   }
 
   // ── Password Reset ──────────────────────────────────────────────────────────

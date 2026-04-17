@@ -47,29 +47,38 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         children: [
           // ── Decorative blobs ─────────────────────────────────────────
           Positioned(
-            top: -80, right: -80,
-            child: _Blob(size: 260, color: Colors.white.withOpacity(0.04)),
+            top: -80,
+            right: -80,
+            child:
+                _Blob(size: 260, color: Colors.white.withValues(alpha: 0.04)),
           ),
           Positioned(
-            top: 100, left: -60,
-            child: _Blob(size: 180, color: Colors.white.withOpacity(0.03)),
+            top: 100,
+            left: -60,
+            child:
+                _Blob(size: 180, color: Colors.white.withValues(alpha: 0.03)),
           ),
           Positioned(
-            top: size.height * 0.18, right: 24,
-            child: _Blob(size: 100, color: AppColors.accent.withOpacity(0.12)),
+            top: size.height * 0.18,
+            right: 24,
+            child: _Blob(
+                size: 100, color: AppColors.accent.withValues(alpha: 0.12)),
           ),
 
           // ── Floating word chips ──────────────────────────────────────
           Positioned(
-            top: size.height * 0.09, left: 24,
+            top: size.height * 0.09,
+            left: 24,
             child: _WordChip('serendipity'),
           ),
           Positioned(
-            top: size.height * 0.18, right: 20,
+            top: size.height * 0.18,
+            right: 20,
             child: _WordChip('ephemeral'),
           ),
           Positioned(
-            top: size.height * 0.28, left: 40,
+            top: size.height * 0.28,
+            left: 40,
             child: _WordChip('mellifluous'),
           ),
 
@@ -89,13 +98,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         children: [
                           // Icon mark
                           Container(
-                            width: 80, height: 80,
+                            width: 80,
+                            height: 80,
                             decoration: BoxDecoration(
                               gradient: AppColors.accentGradient,
                               borderRadius: BorderRadius.circular(24),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.accent.withOpacity(0.35),
+                                  color:
+                                      AppColors.accent.withValues(alpha: 0.35),
                                   blurRadius: 24,
                                   offset: const Offset(0, 8),
                                 ),
@@ -103,19 +114,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             ),
                             child: const Icon(
                               Icons.auto_stories_rounded,
-                              size: 42, color: Colors.white,
+                              size: 42,
+                              color: Colors.white,
                             ),
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            'Searchy Dict',
+                            'SearcHub',
                             style: T.display(color: Colors.white),
                           ),
                           const SizedBox(height: 8),
                           Text(
                             'Every word, defined.',
                             style: T.subtitle(
-                              color: Colors.white.withOpacity(0.6),
+                              color: Colors.white.withValues(alpha: 0.6),
                             ),
                           ),
                         ],
@@ -141,7 +153,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                               // Drag handle
                               Center(
                                 child: Container(
-                                  width: 40, height: 4,
+                                  width: 40,
+                                  height: 4,
                                   margin: const EdgeInsets.only(bottom: 24),
                                   decoration: BoxDecoration(
                                     color: AppColors.border,
@@ -209,12 +222,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                   ),
                                   label: Text(
                                     'Continue as Guest',
-                                    style: T.label(
-                                      color: AppColors.textSecondary,
-                                    ).copyWith(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                    style: T
+                                        .label(
+                                          color: AppColors.textSecondary,
+                                        )
+                                        .copyWith(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
                                   style: OutlinedButton.styleFrom(
                                     side: const BorderSide(
@@ -259,7 +274,8 @@ class _Blob extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        width: size, height: size,
+        width: size,
+        height: size,
         decoration: BoxDecoration(shape: BoxShape.circle, color: color),
       );
 }
@@ -273,13 +289,13 @@ class _WordChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.08),
+        color: Colors.white.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.12)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
       ),
       child: Text(
         word,
-        style: T.label(color: Colors.white.withOpacity(0.55)),
+        style: T.label(color: Colors.white.withValues(alpha: 0.55)),
       ),
     );
   }
@@ -301,9 +317,10 @@ class _FeatureRow extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 38, height: 38,
+          width: 38,
+          height: 38,
           decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
+            color: color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(icon, size: 18, color: color),
@@ -312,9 +329,13 @@ class _FeatureRow extends StatelessWidget {
         Expanded(
           child: Text(
             label,
-            style: T.label(
-              color: available ? AppColors.textPrimary : AppColors.textSecondary,
-            ).copyWith(fontSize: 14),
+            style: T
+                .label(
+                  color: available
+                      ? AppColors.textPrimary
+                      : AppColors.textSecondary,
+                )
+                .copyWith(fontSize: 14),
           ),
         ),
         Icon(
@@ -348,7 +369,7 @@ class _GradientButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.3),
+              color: AppColors.primary.withValues(alpha: 0.3),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),
@@ -362,9 +383,9 @@ class _GradientButton extends StatelessWidget {
             Text(
               label,
               style: T.label(color: Colors.white).copyWith(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
             ),
           ],
         ),

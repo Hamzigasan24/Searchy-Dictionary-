@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/constants.dart';
+import '../../utils/validators.dart';
 import '../../widgets/auth_widgets.dart';
 import '../../widgets/custom_text_field.dart';
 import '../home_screen.dart';
@@ -14,28 +15,30 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final _formKey      = GlobalKey<FormState>();
-  final _nameCtrl     = TextEditingController();
-  final _emailCtrl    = TextEditingController();
-  final _passCtrl     = TextEditingController();
-  final _confirmCtrl  = TextEditingController();
-  bool _obscurePass    = true;
+  final _formKey = GlobalKey<FormState>();
+  final _nameCtrl = TextEditingController();
+  final _emailCtrl = TextEditingController();
+  final _passCtrl = TextEditingController();
+  final _confirmCtrl = TextEditingController();
+  bool _obscurePass = true;
   bool _obscureConfirm = true;
 
   @override
   void dispose() {
-    _nameCtrl.dispose(); _emailCtrl.dispose();
-    _passCtrl.dispose(); _confirmCtrl.dispose();
+    _nameCtrl.dispose();
+    _emailCtrl.dispose();
+    _passCtrl.dispose();
+    _confirmCtrl.dispose();
     super.dispose();
   }
 
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
     final ok = await context.read<AuthProvider>().register(
-      name: _nameCtrl.text.trim(),
-      email: _emailCtrl.text.trim(),
-      password: _passCtrl.text,
-    );
+          name: _nameCtrl.text.trim(),
+          email: _emailCtrl.text.trim(),
+          password: _passCtrl.text,
+        );
     if (ok && mounted) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => const HomeScreen()),
@@ -46,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth    = context.watch<AuthProvider>();
+    final auth = context.watch<AuthProvider>();
     final loading = auth.status == AuthStatus.loading;
 
     return Scaffold(
@@ -66,11 +69,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Stack(
                 children: [
                   Positioned(
-                    top: 8, left: 8,
+                    top: 8,
+                    left: 8,
                     child: IconButton(
                       icon: const Icon(
                         Icons.arrow_back_ios_new_rounded,
-                        color: Colors.white70, size: 20,
+                        color: Colors.white70,
+                        size: 20,
                       ),
                       onPressed: () {
                         context.read<AuthProvider>().clearError();
@@ -88,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Text(
                           'Start saving your word searches',
                           style: T.subtitle(
-                            color: Colors.white.withOpacity(0.6),
+                            color: Colors.white.withValues(alpha: 0.6),
                           ),
                         ),
                       ],
@@ -118,7 +123,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       prefixIcon: Icons.person_outline_rounded,
                       textInputAction: TextInputAction.next,
                       validator: (v) {
-                        if (v == null || v.trim().isEmpty) return 'Name is required';
+                        if (v == null || v.trim().isEmpty)
+                          return 'Name is required';
                         if (v.trim().length < 2) return 'Name is too short';
                         return null;
                       },
@@ -131,13 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       prefixIcon: Icons.email_outlined,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      validator: (v) {
-                        if (v == null || v.isEmpty) return 'Email is required';
-                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v)) {
-                          return 'Enter a valid email';
-                        }
-                        return null;
-                      },
+                      validator: Validators.validateEmail,
                     ),
                     const SizedBox(height: 13),
 
@@ -152,13 +152,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           _obscurePass
                               ? Icons.visibility_outlined
                               : Icons.visibility_off_outlined,
-                          color: AppColors.textLight, size: 20,
+                          color: AppColors.textLight,
+                          size: 20,
                         ),
                         onPressed: () =>
                             setState(() => _obscurePass = !_obscurePass),
                       ),
                       validator: (v) {
-                        if (v == null || v.isEmpty) return 'Password is required';
+                        if (v == null || v.isEmpty)
+                          return 'Password is required';
                         if (v.length < 6) return 'Min. 6 characters';
                         return null;
                       },
@@ -177,14 +179,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           _obscureConfirm
                               ? Icons.visibility_outlined
                               : Icons.visibility_off_outlined,
-                          color: AppColors.textLight, size: 20,
+                          color: AppColors.textLight,
+                          size: 20,
                         ),
                         onPressed: () =>
                             setState(() => _obscureConfirm = !_obscureConfirm),
                       ),
                       validator: (v) {
-                        if (v == null || v.isEmpty) return 'Please confirm password';
-                        if (v != _passCtrl.text) return 'Passwords do not match';
+                        if (v == null || v.isEmpty)
+                          return 'Please confirm password';
+                        if (v != _passCtrl.text)
+                          return 'Passwords do not match';
                         return null;
                       },
                     ),
@@ -233,7 +238,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Text(
                             'Sign In',
-                            style: T.caption(color: AppColors.primary)
+                            style: T
+                                .caption(color: AppColors.primary)
                                 .copyWith(fontWeight: FontWeight.w700),
                           ),
                         ),

@@ -1,13 +1,33 @@
 {
   "project_info": {
-    "project_number": "000000000000",
-    "project_id": "searchy-dict-placeholder",
-    "storage_bucket": "searchy-dict-placeholder.appspot.com"
+    "project_number": "731560323593",
+    "firebase_url": "https://searchy-1baa5-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "searchy-1baa5",
+    "storage_bucket": "searchy-1baa5.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+        "mobilesdk_app_id": "1:731560323593:android:74de7796538c5bbf6926d8",
+        "android_client_info": {
+          "package_name": "com.example.searchy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCXxcS_e7RAKGdqD5trkKDrLszR8PK2DA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731560323593:android:d8081fc81ce210336926d8",
         "android_client_info": {
           "package_name": "com.searchydict.searchy_dict"
         }
@@ -15,7 +35,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaPlaceholderKeyReplaceWithRealFirebaseKey"
+          "current_key": "AIzaSyDCXxcS_e7RAKGdqD5trkKDrLszR8PK2DA"
         }
       ],
       "services": {

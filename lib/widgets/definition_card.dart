@@ -48,7 +48,7 @@ class DefinitionCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 4),
                             decoration: BoxDecoration(
-                              color: c.withOpacity(0.1),
+                              color: c.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Text(
@@ -90,7 +90,7 @@ class DefinitionCard extends StatelessWidget {
                                     right: 10, top: 2),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  color: c.withOpacity(0.1),
+                                  color: c.withValues(alpha: 0.1),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Text(
@@ -117,15 +117,15 @@ class DefinitionCard extends StatelessWidget {
                           margin: const EdgeInsets.only(top: 4),
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: c.withOpacity(0.05),
+                            color: c.withValues(alpha: 0.05),
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: c.withOpacity(0.12)),
+                            border: Border.all(color: c.withValues(alpha: 0.12)),
                           ),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Icon(Icons.format_quote_rounded,
-                                  size: 15, color: c.withOpacity(0.6)),
+                                  size: 15, color: c.withValues(alpha: 0.6)),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(

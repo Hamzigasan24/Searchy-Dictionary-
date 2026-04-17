@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/constants.dart';
+import '../../utils/validators.dart';
 import '../../widgets/auth_widgets.dart';
 import '../../widgets/custom_text_field.dart';
 import '../home_screen.dart';
@@ -15,9 +16,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey   = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final _emailCtrl = TextEditingController();
-  final _passCtrl  = TextEditingController();
+  final _passCtrl = TextEditingController();
   bool _obscure = true;
 
   @override
@@ -81,7 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   // Back button
                   Positioned(
-                    top: 8, left: 8,
+                    top: 8,
+                    left: 8,
                     child: IconButton(
                       icon: const Icon(
                         Icons.arrow_back_ios_new_rounded,
@@ -100,12 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 60, height: 60,
+                          width: 60,
+                          height: 60,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.12),
+                            color: Colors.white.withValues(alpha: 0.12),
                             borderRadius: BorderRadius.circular(18),
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha: 0.2),
                             ),
                           ),
                           child: const Icon(
@@ -123,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'Sign in to your account',
                           style: T.subtitle(
-                            color: Colors.white.withOpacity(0.6),
+                            color: Colors.white.withValues(alpha: 0.6),
                           ),
                         ),
                       ],
@@ -154,11 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: Icons.email_outlined,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      validator: (v) {
-                        if (v == null || v.isEmpty) return 'Email is required';
-                        if (!v.contains('@')) return 'Enter a valid email';
-                        return null;
-                      },
+                      validator: Validators.validateEmail,
                     ),
                     const SizedBox(height: 14),
 
@@ -177,11 +176,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: AppColors.textLight,
                           size: 20,
                         ),
-                        onPressed: () =>
-                            setState(() => _obscure = !_obscure),
+                        onPressed: () => setState(() => _obscure = !_obscure),
                       ),
                       validator: (v) {
-                        if (v == null || v.isEmpty) return 'Password is required';
+                        if (v == null || v.isEmpty)
+                          return 'Password is required';
                         return null;
                       },
                     ),
@@ -250,9 +249,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           'Create Account',
                           style: T.label(color: AppColors.primary).copyWith(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w700,
-                          ),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                       ),
                     ),

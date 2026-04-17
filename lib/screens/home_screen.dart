@@ -199,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: AppColors.error.withOpacity(0.08),
+                  color: AppColors.error.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Icon(Icons.logout_rounded,
@@ -265,7 +265,7 @@ class _SearchTab extends StatelessWidget {
                       user != null
                           ? 'Hello, ${user!.displayName?.split(' ').first ?? 'there'} 👋'
                           : 'Explore Words',
-                      style: T.label(color: Colors.white.withOpacity(0.7)),
+                      style: T.label(color: Colors.white.withValues(alpha: 0.7)),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -282,7 +282,7 @@ class _SearchTab extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.08),
+                            color: Colors.black.withValues(alpha: 0.08),
                             blurRadius: 20,
                             offset: const Offset(0, 4),
                           ),
@@ -432,7 +432,7 @@ class _RecentCard extends StatelessWidget {
             Container(
               width: 40, height: 40,
               decoration: BoxDecoration(
-                color: c.withOpacity(0.1),
+                color: c.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(Icons.history_rounded, size: 18, color: c),
@@ -476,7 +476,7 @@ class _GuestBanner extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.primary.withOpacity(0.15)),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.15)),
       ),
       child: Row(
         children: [
@@ -581,7 +581,7 @@ class _NavItem extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: active
-                    ? AppColors.primary.withOpacity(0.1)
+                    ? AppColors.primary.withValues(alpha: 0.1)
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
               ),

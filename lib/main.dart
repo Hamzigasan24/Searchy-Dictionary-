@@ -18,8 +18,8 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     firebaseReady = true;
-  } catch (_) {
-    // Firebase not configured yet — app runs in guest-only / demo mode.
+  } catch (e) {
+    print("FIREBASE INITIALIZATION ERROR: $e");
     firebaseReady = false;
   }
   runApp(const SearchyDictApp());
@@ -37,7 +37,7 @@ class SearchyDictApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HistoryProvider()),
       ],
       child: MaterialApp(
-        title: 'Searchy Dict',
+        title: 'SearcHub',
         debugShowCheckedModeBanner: false,
         theme: appTheme(),
         home: const SplashScreen(),
